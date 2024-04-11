@@ -5,8 +5,10 @@ const ACCELERATION = 10
 
 var speed := INIT_SPEED
 var direction := Vector2.ONE
+var screen_width := 0.0
 
 func _ready() -> void:
+	screen_width = get_viewport_rect().size.x
 	velocity = Vector2(-3, 1)
 
 
@@ -47,3 +49,16 @@ func _physics_process(delta: float) -> void:
 			position = Vector2(600, 450)
 		else:
 			print("Invalid collision")
+
+	var half_width := screen_width * 0.5
+	if position.x < half_width:
+		var ratio := position.x / half_width
+		modulate = Color(0, 1, 0, 1).lerp(Color(0, 1, 1, 1), ratio)
+	else:
+		var ratio := (position.x - half_width) / half_width
+		modulate = Color(0, 1, 1, 1).lerp(Color(1, 0, 1, 1), ratio) # 紫
+
+	# var x_ratio := position.x / screen_width
+	# var color := Color.GREEN.lerp(Color(1, 0, 1, 1), x_ratio)
+
+	# modulate = color
