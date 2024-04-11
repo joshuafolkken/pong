@@ -11,5 +11,5 @@ offset_right = 1200.0
 offset_bottom = 64.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2.08165e-12, 50)
+position = Vector2(0, 64)
 shape = SubResource("WorldBoundaryShape2D_by7gd")

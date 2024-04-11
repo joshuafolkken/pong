@@ -9,7 +9,7 @@ extends Node2D
 # var pad_size := Vector2.ZERO
 # var direction := Vector2(1.0, 0.0)
 
-@onready var left_paddle: Area2D = $LeftPaddle
+#@onready var left_paddle: Area2D = $LeftPaddle
 
 
 # Called when the node enters the scene tree for the first time.
