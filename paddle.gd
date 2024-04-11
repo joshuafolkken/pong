@@ -15,11 +15,12 @@ func _ready() -> void:
 
 	var screen_size := get_viewport_rect().size
 
-	var collision_shape := get_node("CollisionShape2D")
-	var paddle_size: float = collision_shape.shape.extents.y * 2
+	var collision_shape: CollisionShape2D = get_node("CollisionShape2D")
+	var rectangle_shape: RectangleShape2D = collision_shape.shape
+	var paddle_size: float = rectangle_shape.extents.y * 2
 
-	y_min = wall_size
-	y_max = screen_size.y - wall_size - paddle_size
+	y_min = wall_size + paddle_size / 2
+	y_max = screen_size.y - wall_size - paddle_size / 2
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

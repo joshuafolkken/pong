@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bsp0128sfi5lg" path="res://wall.tscn" id="1_e8wku"]
 [ext_resource type="Shader" path="res://new_shader.gdshader" id="1_x0psg"]
 [ext_resource type="Script" path="res://main.gd" id="2_8w4nk"]
-[ext_resource type="PackedScene" uid="uid://csloe4yhdd1c" path="res://collision.tscn" id="2_466c4"]
+[ext_resource type="PackedScene" uid="uid://csloe4yhdd1c" path="res://goal.tscn" id="2_466c4"]
 [ext_resource type="Script" path="res://center_line.gd" id="3_sr750"]
 [ext_resource type="PackedScene" uid="uid://b0vphqis5146h" path="res://ball.tscn" id="4_qevjt"]
 [ext_resource type="PackedScene" uid="uid://bqkm02uo1jyqh" path="res://paddle.tscn" id="6_bl2qp"]
@@ -25,9 +25,9 @@ position = Vector2(2.08165e-12, 900)
 scale = Vector2(1, -1)
 metadata/_edit_lock_ = true
 
-[node name="LeftCollision" parent="Stage" instance=ExtResource("2_466c4")]
+[node name="LeftGoal" parent="Stage" instance=ExtResource("2_466c4")]
 
-[node name="RightCollision" parent="Stage" instance=ExtResource("2_466c4")]
+[node name="RightGoal" parent="Stage" instance=ExtResource("2_466c4")]
 position = Vector2(1200, 450)
 rotation = -1.5708
 
@@ -39,11 +39,11 @@ script = ExtResource("3_sr750")
 position = Vector2(600, 450)
 metadata/_edit_lock_ = true
 
-[node name="LeftPaddle" parent="." instance=ExtResource("6_bl2qp")]
-position = Vector2(64, 416)
+[node name="LeftPaddle" parent="." groups=["left_paddle"] instance=ExtResource("6_bl2qp")]
+position = Vector2(76, 447)
 
 [node name="RightPaddle" parent="." instance=ExtResource("6_bl2qp")]
-position = Vector2(1112, 416)
+position = Vector2(1124, 450)
 player_id = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
