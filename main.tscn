@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dju4h517kj54d"]
+[gd_scene load_steps=9 format=3 uid="uid://dju4h517kj54d"]
 
 [ext_resource type="PackedScene" uid="uid://bsp0128sfi5lg" path="res://wall.tscn" id="1_e8wku"]
 [ext_resource type="Shader" path="res://new_shader.gdshader" id="1_x0psg"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://csloe4yhdd1c" path="res://collision.tscn" id="2_466c4"]
 [ext_resource type="Script" path="res://center_line.gd" id="3_sr750"]
 [ext_resource type="PackedScene" uid="uid://b0vphqis5146h" path="res://ball.tscn" id="4_qevjt"]
-[ext_resource type="Script" path="res://ball.gd" id="5_pfjap"]
 [ext_resource type="PackedScene" uid="uid://bqkm02uo1jyqh" path="res://paddle.tscn" id="6_bl2qp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_awcsm"]
@@ -37,8 +36,7 @@ position = Vector2(600, 2.08165e-12)
 script = ExtResource("3_sr750")
 
 [node name="Ball" parent="." instance=ExtResource("4_qevjt")]
-position = Vector2(208, 304)
-script = ExtResource("5_pfjap")
+position = Vector2(600, 450)
 metadata/_edit_lock_ = true
 
 [node name="LeftPaddle" parent="." instance=ExtResource("6_bl2qp")]

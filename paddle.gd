@@ -1,4 +1,4 @@
-extends Area2D
+extends CharacterBody2D
 
 const wall_size := 64
 
@@ -32,14 +32,14 @@ func _process(delta: float) -> void:
 
 		if Input.is_action_pressed("left_move_down"):
 			velocity.y = 1
-	
+
 	elif player_id == 1:
 		if Input.is_action_pressed("right_move_up"):
 			velocity.y = -1
 
 		if Input.is_action_pressed("right_move_down"):
 			velocity.y = 1
-		
+
 
 	position += velocity * speed * delta
 
