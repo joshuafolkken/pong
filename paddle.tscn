@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ya5p8"]
 size = Vector2(24, 64)
 
-[node name="Paddle" type="CharacterBody2D"]
+[node name="Paddle" type="CharacterBody2D" groups=["paddle"]]
 script = ExtResource("1_ruuwa")
 
 [node name="ColorRect" type="ColorRect" parent="."]
