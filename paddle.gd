@@ -5,7 +5,9 @@ const wall_size := 64
 var y_min := 0.0
 var y_max := 0.0
 
+@export var player_id := 0
 @export var speed := 800
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -24,11 +26,20 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	var velocity := Vector2.ZERO
 
-	if Input.is_action_pressed("left_move_up"):
-		velocity.y = -1
+	if player_id == 0:
+		if Input.is_action_pressed("left_move_up"):
+			velocity.y = -1
 
-	if Input.is_action_pressed("left_move_down"):
-		velocity.y = 1
+		if Input.is_action_pressed("left_move_down"):
+			velocity.y = 1
+	
+	elif player_id == 1:
+		if Input.is_action_pressed("right_move_up"):
+			velocity.y = -1
+
+		if Input.is_action_pressed("right_move_down"):
+			velocity.y = 1
+		
 
 	position += velocity * speed * delta
 

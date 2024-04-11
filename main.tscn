@@ -42,8 +42,11 @@ script = ExtResource("5_pfjap")
 metadata/_edit_lock_ = true
 
 [node name="LeftPaddle" parent="." instance=ExtResource("6_bl2qp")]
-position = Vector2(56, 216)
-metadata/_edit_lock_ = true
+position = Vector2(64, 416)
+
+[node name="RightPaddle" parent="." instance=ExtResource("6_bl2qp")]
+position = Vector2(1112, 416)
+player_id = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
