@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhn2ejhh8jrl7"]
+
+[ext_resource type="FontFile" uid="uid://wtmjtffvanbn" path="res://fonts/StWinterPixel24DemoRegular-RpV73.otf" id="1_v1qr8"]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="Scores" type="Node2D" parent="."]
+position = Vector2(208, 96)
+
+[node name="ScoreLeft" type="Label" parent="Scores"]
+offset_right = 240.0
+offset_bottom = 270.0
+scale = Vector2(0.8, 1.2)
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("1_v1qr8")
+theme_override_font_sizes/font_size = 300
+text = "15"
+horizontal_alignment = 2
+
+[node name="ScoreLeft2" type="Label" parent="Scores"]
+offset_left = 600.0
+offset_right = 840.0
+offset_bottom = 270.0
+scale = Vector2(0.8, 1.2)
+theme_override_colors/font_color = Color(1, 0, 1, 1)
+theme_override_fonts/font = ExtResource("1_v1qr8")
+theme_override_font_sizes/font_size = 300
+text = "15"
+horizontal_alignment = 2
