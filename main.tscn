@@ -39,8 +39,8 @@ script = ExtResource("3_sr750")
 position = Vector2(600, 450)
 metadata/_edit_lock_ = true
 
-[node name="LeftPaddle" parent="." instance=ExtResource("6_bl2qp")]
-position = Vector2(76, 448)
+[node name="LeftPaddle" parent="." groups=["left_paddle"] instance=ExtResource("6_bl2qp")]
+position = Vector2(76, 447)
 
 [node name="RightPaddle" parent="." instance=ExtResource("6_bl2qp")]
 position = Vector2(1124, 450)
