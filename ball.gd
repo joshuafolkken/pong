@@ -1,5 +1,4 @@
 class_name Ball
-
 extends CharacterBody2D
 
 const INIT_SPEED = 300
@@ -9,6 +8,7 @@ var speed := INIT_SPEED
 var direction := Vector2.ONE
 var screen_size := Vector2.ZERO
 
+@onready var main: Main = get_node("/root/Main")
 @onready var beep: Beep = get_node("/root/Main/Beep")
 @onready var hud: Hud = get_node("/root/Main/HUD")
 
@@ -89,6 +89,7 @@ func goal() -> void:
 	hud.show_scores()
 
 	if hud.is_game_over():
+		main.game_state = main.GameState.waiting
 		return
 
 	await get_tree().create_timer(2.0).timeout

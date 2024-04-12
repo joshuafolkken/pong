@@ -1,5 +1,4 @@
 class_name Beep
-
 extends AudioStreamPlayer2D
 
 var end_time := 0.01

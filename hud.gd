@@ -1,5 +1,4 @@
 class_name Hud
-
 extends CanvasLayer
 
 const max_score = 5
