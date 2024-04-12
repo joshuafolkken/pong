@@ -2,7 +2,7 @@ class_name Hud
 
 extends CanvasLayer
 
-const max_score = 15
+const max_score = 5
 
 var score_left := max_score
 var score_right:= max_score
@@ -35,3 +35,7 @@ func start() -> void:
 	show_scores()
 	await get_tree().create_timer(2.0).timeout
 	hide()
+
+
+func is_game_over() -> bool:
+	return score_left >= max_score or score_right >= max_score
