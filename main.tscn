@@ -47,9 +47,18 @@ metadata/_edit_lock_ = true
 modulate = Color(0, 1, 0, 1)
 position = Vector2(76, 447)
 
+[node name="LeftPaddle2" parent="." groups=["left_paddle"] instance=ExtResource("6_bl2qp")]
+modulate = Color(0, 1, 0, 1)
+position = Vector2(500, 447)
+
 [node name="RightPaddle" parent="." instance=ExtResource("6_bl2qp")]
 modulate = Color(1, 0, 1, 1)
 position = Vector2(1124, 450)
+player_id = 1
+
+[node name="RightPaddle2" parent="." instance=ExtResource("6_bl2qp")]
+modulate = Color(1, 0, 1, 1)
+position = Vector2(700, 450)
 player_id = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
