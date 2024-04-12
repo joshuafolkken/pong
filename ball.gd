@@ -7,9 +7,12 @@ var speed := INIT_SPEED
 var direction := Vector2.ONE
 var screen_width := 0.0
 
+@onready var beep: Beep = get_node("/root/Main/Beep")
+
 func _ready() -> void:
 	screen_width = get_viewport_rect().size.x
 	velocity = Vector2(-3, 1)
+	beep.start()
 
 
 func _physics_process(delta: float) -> void:
@@ -19,7 +22,7 @@ func _physics_process(delta: float) -> void:
 	var collision := move_and_collide(velocity)
 
 	if collision:
-
+		beep.hit()
 		var collider: Node2D = collision.get_collider()
 
 		if collider.is_in_group("paddles"):
