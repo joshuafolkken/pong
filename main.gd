@@ -1,4 +1,12 @@
+class_name Main
 extends Node2D
+
+enum GameState {
+	waiting,
+	playing,
+}
+
+@onready var game_state := GameState.waiting
 
 @onready var ball: Ball = $Ball
 @onready var hud: Hud = $HUD
@@ -14,6 +22,8 @@ func _process(_delta: float) -> void:
 
 
 func start() -> void:
+	game_state = GameState.playing
+
 	hud.start()
 
 	await get_tree().create_timer(2.0).timeout
@@ -22,5 +32,6 @@ func start() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("game_start"):
-		start()
+	if game_state == GameState.waiting:
+		if event.is_action_pressed("game_start"):
+			start()
