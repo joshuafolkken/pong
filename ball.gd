@@ -10,14 +10,16 @@ var direction := Vector2.ONE
 var screen_size := Vector2.ZERO
 
 @onready var beep: Beep = get_node("/root/Main/Beep")
+@onready var hud: Hud = get_node("/root/Main/HUD")
 
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
+	velocity = Vector2(-3, 1)
+	position = Vector2(screen_size.x / 2, screen_size.y / 2)
 
 
 func show_ball() -> void:
 	position = Vector2(screen_size.x / 2, screen_size.y / 2)
-	velocity = Vector2(-3, 1)
 	beep.start()
 	show()
 
@@ -28,6 +30,9 @@ func start() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if not is_visible():
+		return
+
 	velocity = velocity.normalized()
 	velocity = velocity * speed * delta
 
@@ -56,12 +61,17 @@ func _physics_process(delta: float) -> void:
 
 			velocity = velocity.length() * direction
 
-		elif collider.is_in_group("wall"):
+		elif collider.is_in_group("walls"):
 			print("wall")
 			velocity = velocity.bounce(collision.get_normal())
-		elif collider.is_in_group("goal"):
+		elif collider.is_in_group("goals"):
 			print("goal")
-			position = Vector2(600, 450)
+
+			if collider.is_in_group("left_goal"):
+				hud.score_right += 1
+			else:
+				hud.score_left += 1
+			goal()
 		else:
 			print("Invalid collision")
 
@@ -73,7 +83,12 @@ func _physics_process(delta: float) -> void:
 		var ratio := (position.x - half_width) / half_width
 		modulate = Color(0, 1, 1, 1).lerp(Color(1, 0, 1, 1), ratio) # 紫
 
-	# var x_ratio := position.x / screen_width
-	# var color := Color.GREEN.lerp(Color(1, 0, 1, 1), x_ratio)
 
-	# modulate = color
+func goal() -> void:
+	hide()
+	hud.show_scores()
+
+	await get_tree().create_timer(2.0).timeout
+
+	hud.hide()
+	show_ball()
