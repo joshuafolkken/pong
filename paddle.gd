@@ -30,8 +30,8 @@ func move_with_mouse() -> bool:
 
 	# if mouse_pos.x < 0 or mouse_pos.x > screen_size.x:
 	# 	return false
-	# if mouse_pos.y < 0 or mouse_pos.y > screen_size.y:
-	# 	return false
+	if mouse_pos.y < 0 or mouse_pos.y > screen_size.y:
+		return false
 
 	if player_id == 0 and mouse_pos.x > screen_size.x / 2:
 		return false
