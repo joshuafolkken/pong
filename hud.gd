@@ -24,7 +24,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 
@@ -33,6 +33,5 @@ func start() -> void:
 	score_right = 0
 
 	show_scores()
-
 	await get_tree().create_timer(2.0).timeout
 	hide()
