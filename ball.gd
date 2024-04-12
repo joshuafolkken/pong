@@ -1,3 +1,5 @@
+class_name Ball
+
 extends CharacterBody2D
 
 const INIT_SPEED = 300
@@ -5,14 +7,24 @@ const ACCELERATION = 10
 
 var speed := INIT_SPEED
 var direction := Vector2.ONE
-var screen_width := 0.0
+var screen_size := Vector2.ZERO
 
 @onready var beep: Beep = get_node("/root/Main/Beep")
 
 func _ready() -> void:
-	screen_width = get_viewport_rect().size.x
+	screen_size = get_viewport_rect().size
+
+
+func show_ball() -> void:
+	position = Vector2(screen_size.x / 2, screen_size.y / 2)
 	velocity = Vector2(-3, 1)
 	beep.start()
+	show()
+
+
+func start() -> void:
+	speed = INIT_SPEED
+	show_ball()
 
 
 func _physics_process(delta: float) -> void:
@@ -53,7 +65,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			print("Invalid collision")
 
-	var half_width := screen_width * 0.5
+	var half_width := screen_size.y * 0.5
 	if position.x < half_width:
 		var ratio := position.x / half_width
 		modulate = Color(0, 1, 0, 1).lerp(Color(0, 1, 1, 1), ratio)
