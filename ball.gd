@@ -88,6 +88,9 @@ func goal() -> void:
 	hide()
 	hud.show_scores()
 
+	if hud.is_game_over():
+		return
+
 	await get_tree().create_timer(2.0).timeout
 
 	hud.hide()
