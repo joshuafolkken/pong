@@ -6,7 +6,7 @@ var y_min := 0.0
 var y_max := 0.0
 
 @export var player_id := 0
-@export var speed := 800
+@export var speed := 600
 
 
 # Called when the node enters the scene tree for the first time.
