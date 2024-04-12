@@ -19,8 +19,11 @@ func _ready() -> void:
 	var rectangle_shape: RectangleShape2D = collision_shape.shape
 	var paddle_size: float = rectangle_shape.extents.y * 2
 
-	y_min = wall_size + paddle_size / 2
-	y_max = screen_size.y - wall_size - paddle_size / 2
+	# y_min = wall_size + paddle_size / 2
+	# y_max = screen_size.y - wall_size - paddle_size / 2
+
+	y_min = 0 + paddle_size / 2
+	y_max = screen_size.y - paddle_size / 2
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
