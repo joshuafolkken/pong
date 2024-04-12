@@ -35,3 +35,9 @@ func _input(event: InputEvent) -> void:
 	if game_state == GameState.waiting:
 		if event.is_action_pressed("game_start"):
 			start()
+
+		if event is InputEventMouseButton:
+			var mouse_button := event as InputEventMouseButton
+
+			if mouse_button.button_index == MOUSE_BUTTON_LEFT and mouse_button.pressed:
+				start()
