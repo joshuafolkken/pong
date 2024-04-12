@@ -39,10 +39,15 @@ func _physics_process(delta: float) -> void:
 	var collision := move_and_collide(velocity)
 
 	if collision:
-		beep.hit()
 		var collider: Node2D = collision.get_collider()
 
 		if collider.is_in_group("paddles"):
+			var paddle: Paddle = collider as Paddle
+
+			# if (paddle.player_id == 0 and velocity.x < 0) or (paddle.player_id == 1 and velocity.x > 0):
+			print("hit")
+			beep.hit()
+
 			# print("paddle")
 			# velocity = velocity.bounce(collision.get_normal())
 			speed += ACCELERATION
@@ -54,18 +59,29 @@ func _physics_process(delta: float) -> void:
 			var angle := normalizerd_distance * (PI / 4)
 			var direction := Vector2.RIGHT.rotated(angle)
 
-			if collider.is_in_group("left_paddle"):
+			if velocity.x < 0:
 				direction.x = abs(direction.x)
 			else:
 				direction.x = -abs(direction.x)
 
+			# if collider.is_in_group("left_paddle"):
+			# 	direction.x = abs(direction.x)
+			# else:
+			# 	direction.x = -abs(direction.x)
+
 			velocity = velocity.length() * direction
 
+			# else:
+			# 	velocity = velocity.bounce(collision.get_normal())
+				# print("back hit")
+
+
 		elif collider.is_in_group("walls"):
-			print("wall")
+			beep.hit()
 			velocity = velocity.bounce(collision.get_normal())
+
 		elif collider.is_in_group("goals"):
-			print("goal")
+			beep.hit()
 
 			if collider.is_in_group("left_goal"):
 				hud.score_right += 1
@@ -76,6 +92,7 @@ func _physics_process(delta: float) -> void:
 			print("Invalid collision")
 
 	var half_width := screen_size.y * 0.5
+
 	if position.x < half_width:
 		var ratio := position.x / half_width
 		modulate = Color(0, 1, 0, 1).lerp(Color(0, 1, 1, 1), ratio)
