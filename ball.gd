@@ -42,8 +42,6 @@ func _physics_process(delta: float) -> void:
 		var collider: Node2D = collision.get_collider()
 
 		if collider.is_in_group("paddles"):
-			var paddle: Paddle = collider as Paddle
-
 			# if (paddle.player_id == 0 and velocity.x < 0) or (paddle.player_id == 1 and velocity.x > 0):
 			print("hit")
 			beep.hit()
@@ -112,4 +110,5 @@ func goal() -> void:
 	await get_tree().create_timer(2.0).timeout
 
 	hud.hide()
+	velocity.x *= -1
 	show_ball()
