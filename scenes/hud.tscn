@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bhn2ejhh8jrl7"]
 
-[ext_resource type="FontFile" uid="uid://bg543oqf4lsio" path="res://fonts/Miniline2-GmZ.ttf" id="1_aabwp"]
+[ext_resource type="FontFile" uid="uid://bg543oqf4lsio" path="res://assets/fonts/Miniline2-GmZ.ttf" id="1_aabwp"]
 
 [node name="HUD" type="CanvasLayer"]
 
