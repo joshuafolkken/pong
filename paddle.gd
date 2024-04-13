@@ -7,7 +7,7 @@ var y_min := 0.0
 var y_max := 0.0
 
 @export var player_id := 0
-@export var speed := 600
+@export var speed := 800
 
 @onready var screen_size := Vector2.ZERO
 
