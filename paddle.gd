@@ -5,6 +5,7 @@ const wall_size := 64
 
 var y_min := 0.0
 var y_max := 0.0
+var is_mouse_moving := false
 
 @export var player_id := 0
 @export var speed := 800
@@ -28,6 +29,11 @@ func _ready() -> void:
 
 
 func move_with_mouse() -> bool:
+	if is_mouse_moving == false:
+		return false
+	else:
+		is_mouse_moving = false
+
 	var mouse_pos := get_viewport().get_mouse_position()
 
 	# if mouse_pos.x < 0 or mouse_pos.x > screen_size.x:
@@ -77,3 +83,10 @@ func _process(delta: float) -> void:
 func set_visibility(visibility: bool) -> void:
 	visible = visibility
 	collision_shere_2d.disabled = !visibility
+
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		var mouse_motion := event as InputEventMouseMotion
+
+		is_mouse_moving = mouse_motion.relative.length() > 0
