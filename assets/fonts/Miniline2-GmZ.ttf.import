@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://wtmjtffvanbn"
-path="res://.godot/imported/StWinterPixel24DemoRegular-RpV73.otf-4587c0eaaed71640887c836753002d6f.fontdata"
+uid="uid://bg543oqf4lsio"
+path="res://.godot/imported/Miniline2-GmZ.ttf-99852a9b46cc73be522af54ee6f83008.fontdata"
 
 [deps]
 
-source_file="res://fonts/StWinterPixel24DemoRegular-RpV73.otf"
-dest_files=["res://.godot/imported/StWinterPixel24DemoRegular-RpV73.otf-4587c0eaaed71640887c836753002d6f.fontdata"]
+source_file="res://assets/fonts/Miniline2-GmZ.ttf"
+dest_files=["res://.godot/imported/Miniline2-GmZ.ttf-99852a9b46cc73be522af54ee6f83008.fontdata"]
 
 [params]
 

@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://fmd14ubemh5w"
-path="res://.godot/imported/59ThStreetBridgeSong-WyAG.ttf-cbe3b8f81bd54aab027a09be5c3572e1.fontdata"
+path="res://.godot/imported/59ThStreetBridgeSong-WyAG.ttf-5512aae77f68811ae9a0cfaf276d76aa.fontdata"
 
 [deps]
 
-source_file="res://fonts/59ThStreetBridgeSong-WyAG.ttf"
-dest_files=["res://.godot/imported/59ThStreetBridgeSong-WyAG.ttf-cbe3b8f81bd54aab027a09be5c3572e1.fontdata"]
+source_file="res://assets/fonts/59ThStreetBridgeSong-WyAG.ttf"
+dest_files=["res://.godot/imported/59ThStreetBridgeSong-WyAG.ttf-5512aae77f68811ae9a0cfaf276d76aa.fontdata"]
 
 [params]
 
