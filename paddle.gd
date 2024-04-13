@@ -10,6 +10,7 @@ var y_max := 0.0
 @export var speed := 800
 
 @onready var screen_size := Vector2.ZERO
+@onready var collision_shere_2d: CollisionShape2D = $CollisionShape2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -71,3 +72,8 @@ func _process(delta: float) -> void:
 		position.y = y_min
 	elif position.y > y_max:
 		position.y = y_max
+
+
+func set_visibility(visibility: bool) -> void:
+	visible = visibility
+	collision_shere_2d.disabled = !visibility
