@@ -13,7 +13,6 @@ var is_mouse_moving := false
 @onready var screen_size := Vector2.ZERO
 @onready var collision_shere_2d: CollisionShape2D = $CollisionShape2D
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
 
@@ -21,41 +20,31 @@ func _ready() -> void:
 	var rectangle_shape: RectangleShape2D = collision_shape.shape
 	var paddle_size: float = rectangle_shape.extents.y * 2
 
-	# y_min = wall_size + paddle_size / 2
-	# y_max = screen_size.y - wall_size - paddle_size / 2
-
 	y_min = 0 + paddle_size / 2
 	y_max = screen_size.y - paddle_size / 2
 
 
 func move_with_mouse() -> bool:
-	if is_mouse_moving == false:
-		return false
-	else:
-		is_mouse_moving = false
+	if not is_mouse_moving: return false
+
+	is_mouse_moving = false
 
 	var mouse_pos := get_viewport().get_mouse_position()
+	if mouse_pos.y < 0 or mouse_pos.y > screen_size.y: return false
 
-	# if mouse_pos.x < 0 or mouse_pos.x > screen_size.x:
-	# 	return false
-	if mouse_pos.y < 0 or mouse_pos.y > screen_size.y:
-		return false
-
-	if player_id == 0 and mouse_pos.x > screen_size.x / 2:
-		return false
-	if player_id == 1 and mouse_pos.x < screen_size.x / 2:
-		return false
+	match player_id:
+		0: if mouse_pos.x > screen_size.x / 2: return false
+		1: if mouse_pos.x < screen_size.x / 2: return false
+		_: pass
 
 	position.y = mouse_pos.y
 	return true
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var velocity_ := Vector2.ZERO
 
-	if move_with_mouse():
-		return
+	if move_with_mouse(): return
 
 	if player_id == 0:
 		if Input.is_action_pressed("left_move_up"):
