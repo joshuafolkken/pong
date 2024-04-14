@@ -2,8 +2,8 @@ class_name Main
 extends Node2D
 
 enum GameState {
-	waiting,
-	playing,
+	WAITING,
+	PLAYING,
 }
 
 enum GameMode {
@@ -11,7 +11,7 @@ enum GameMode {
 	double,
 }
 
-@onready var game_state := GameState.waiting
+@onready var game_state := GameState.WAITING
 @onready var game_mode := GameMode.double
 
 @onready var ball: Ball = $Ball
@@ -21,29 +21,19 @@ enum GameMode {
 
 
 func set_paddles() -> void:
-	match game_mode:
-		GameMode.single:
-			left_paddle_2.set_visibility(false)
-			right_paddle_2.set_visibility(false)
+	var is_visible := game_mode == GameMode.double
 
-		GameMode.double:
-			left_paddle_2.set_visibility(true)
-			right_paddle_2.set_visibility(true)
+	left_paddle_2.set_visibility(is_visible)
+	right_paddle_2.set_visibility(is_visible)
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	ball.hide()
 	set_paddles()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
-
-
 func start() -> void:
-	game_state = GameState.playing
+	game_state = GameState.PLAYING
 
 	hud.start()
 
@@ -51,9 +41,8 @@ func start() -> void:
 	ball.start()
 
 
-
 func _input(event: InputEvent) -> void:
-	if game_state == GameState.waiting:
+	if game_state == GameState.WAITING:
 		if event.is_action_pressed("game_start"):
 			start()
 
@@ -64,10 +53,6 @@ func _input(event: InputEvent) -> void:
 				start()
 
 	if event.is_action_pressed("game_mode"):
-		match game_mode:
-			GameMode.single:
-				game_mode = GameMode.double
-			GameMode.double:
-				game_mode = GameMode.single
+		game_mode = GameMode.single if game_mode == GameMode.double else GameMode.double
 
 		set_paddles()

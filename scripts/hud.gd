@@ -1,10 +1,10 @@
 class_name Hud
 extends CanvasLayer
 
-const max_score = 5
+const MAX_SCORE = 5
 
-var score_left := max_score
-var score_right:= max_score
+var score_left := MAX_SCORE
+var score_right := MAX_SCORE
 
 @onready var score_left_label: Label = $Scores/ScoreLeftLabel
 @onready var score_right_label: Label = $Scores/ScoreRightLabel
@@ -16,25 +16,21 @@ func show_scores() -> void:
 	show()
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	show_scores()
-	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
-
-
-func start() -> void:
+func reset_socre() -> void:
 	score_left = 0
 	score_right = 0
 
+
+func start() -> void:
+	reset_socre()
 	show_scores()
 	await get_tree().create_timer(2.0).timeout
 	hide()
 
 
-func is_game_over() -> bool:
-	return score_left >= max_score or score_right >= max_score
+func has_winner() -> bool:
+	return score_left >= MAX_SCORE or score_right >= MAX_SCORE
