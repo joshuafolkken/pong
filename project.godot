@@ -27,8 +27,10 @@ gdscript/warnings/unsafe_call_argument=1
 
 window/size/viewport_width=1200
 window/size/viewport_height=900
+window/size/mode=3
 window/stretch/mode="canvas_items"
 window/dpi/allow_hidpi=false
+window/handheld/orientation=1
 
 [input]
 

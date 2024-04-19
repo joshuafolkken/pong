@@ -18,6 +18,7 @@ enum GameMode {
 @onready var hud: Hud = $HUD
 @onready var left_paddle_2: Paddle = $LeftPaddle2
 @onready var right_paddle_2: Paddle = $RightPaddle2
+@onready var full_screen_button: TextureButton = $FullScreenButton
 
 
 func set_paddles() -> void:
@@ -28,8 +29,15 @@ func set_paddles() -> void:
 
 
 func _ready() -> void:
+	full_screen_button.pressed.connect(_on_full_screen_button_pressed)
+
 	ball.hide()
 	set_paddles()
+
+
+func _on_full_screen_button_pressed() -> void:
+	var is_full_screen := DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED if is_full_screen else DisplayServer.WINDOW_MODE_FULLSCREEN)
 
 
 func start() -> void:
