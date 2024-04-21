@@ -46,7 +46,7 @@ func move_with_mouse() -> bool:
 func move_with_touch() -> bool:
 	if touches.size() == 0: return false
 
-	for index: String in touches.keys():
+	for index: int in touches.keys():
 		var touch_pos := touches[index] as Vector2
 		if touch_pos.y < 0 or touch_pos.y > screen_size.y: continue
 
