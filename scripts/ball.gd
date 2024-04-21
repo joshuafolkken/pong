@@ -12,6 +12,7 @@ var screen_size := Vector2.ZERO
 @onready var main: Main = get_node("/root/Main")
 @onready var beep: Beep = get_node("/root/Main/Beep")
 @onready var hud: Hud = get_node("/root/Main/HUD")
+@onready var control: MainControl = get_node("/root/Main/Control")
 
 
 func _ready() -> void:
@@ -88,7 +89,7 @@ func handle_collision(collision: KinematicCollision2D) -> void:
 		handle_goal_collision(collider)
 
 	else:
-		print("Invalid collision")
+		control.show_log("Invalid collision")
 
 
 func _physics_process(delta: float) -> void:

@@ -12,6 +12,7 @@ var is_mouse_moving := false
 
 @onready var screen_size := Vector2.ZERO
 @onready var collision_shere_2d: CollisionShape2D = $CollisionShape2D
+@onready var control: MainControl = get_node("/root/Main/Control")
 
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
@@ -38,13 +39,31 @@ func move_with_mouse() -> bool:
 		_: pass
 
 	position.y = mouse_pos.y
+	control.show_log("move_with_mouse: " + str(position.y))
 	return true
 
 
-func _process(delta: float) -> void:
-	var velocity_ := Vector2.ZERO
+func move_with_touch() -> bool:
+	if touches.size() == 0: return false
 
-	if move_with_mouse(): return
+	for index: String in touches.keys():
+		var touch_pos := touches[index] as Vector2
+		if touch_pos.y < 0 or touch_pos.y > screen_size.y: continue
+
+		match player_id:
+			0: if touch_pos.x > screen_size.x / 2: continue
+			1: if touch_pos.x < screen_size.x / 2: continue
+			_: pass
+
+		position.y = touch_pos.y
+		control.show_log("move_with_touch: " + str(position.y))
+
+	touches.clear()
+	return true
+
+
+func move_with_keyboard(delta: float) -> void:
+	var velocity_ := Vector2.ZERO
 
 	if player_id == 0:
 		if Input.is_action_pressed("left_move_up"):
@@ -69,13 +88,34 @@ func _process(delta: float) -> void:
 		position.y = y_max
 
 
+func _process(delta: float) -> void:
+	if move_with_touch(): return
+	if move_with_mouse(): return
+	move_with_keyboard(delta)
+
+
 func set_visibility(visibility: bool) -> void:
 	visible = visibility
 	collision_shere_2d.disabled = !visibility
 
 
+var touches: Dictionary = {}
+
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
+	if event is InputEventScreenTouch:
+		var touch_event := event as InputEventScreenTouch
+
+		if touch_event.pressed:
+			touches[touch_event.index] = touch_event.position
+			control.show_log("touche event pressed: " + str(touch_event.position))
+
+	elif event is InputEventScreenDrag:
+		var touch_event := event as InputEventScreenDrag
+
+		touches[touch_event.index] = touch_event.position
+		control.show_log("touche event drag: " + str(touch_event.position))
+
+	elif event is InputEventMouseMotion:
 		var mouse_motion := event as InputEventMouseMotion
 
 		is_mouse_moving = mouse_motion.relative.length() > 0
