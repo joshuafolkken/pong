@@ -49,14 +49,14 @@ func move_with_touch() -> bool:
 	for index: int in touches.keys():
 		var touch_pos := touches[index] as Vector2
 		control.show_log("touch index: %s, pos: %s" % [index, str(touch_pos)])
-		if touch_pos.y < 0 or touch_pos.y > screen_size.y: continue
+		# if touch_pos.y < 0 or touch_pos.y > screen_size.y: continue
 
 		match player_id:
 			0: if touch_pos.x > screen_size.x / 2: continue
 			1: if touch_pos.x < screen_size.x / 2: continue
 			_: pass
 
-		position.y = touch_pos.y
+		position.y = clamp(touch_pos.y, y_min, y_max)
 		control.show_log("move_with_touch: " + str(position.y))
 
 	touches.clear()
@@ -83,16 +83,12 @@ func move_with_keyboard(delta: float) -> void:
 
 
 	position += velocity_ * speed * delta
-
-	if position.y < y_min:
-		position.y = y_min
-	elif position.y > y_max:
-		position.y = y_max
+	position.y = clamp(position.y, y_min, y_max)
 
 
 func _process(delta: float) -> void:
 	if move_with_touch(): return
-	if move_with_mouse(): return
+	# if move_with_mouse(): return
 	move_with_keyboard(delta)
 
 
