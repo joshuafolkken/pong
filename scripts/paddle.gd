@@ -48,6 +48,7 @@ func move_with_touch() -> bool:
 
 	for index: int in touches.keys():
 		var touch_pos := touches[index] as Vector2
+		control.show_log("touch index: %s, pos: %s" % [index, str(touch_pos)])
 		if touch_pos.y < 0 or touch_pos.y > screen_size.y: continue
 
 		match player_id:
@@ -59,6 +60,7 @@ func move_with_touch() -> bool:
 		control.show_log("move_with_touch: " + str(position.y))
 
 	touches.clear()
+
 	return true
 
 
@@ -118,4 +120,7 @@ func _input(event: InputEvent) -> void:
 	elif event is InputEventMouseMotion:
 		var mouse_motion := event as InputEventMouseMotion
 
-		is_mouse_moving = mouse_motion.relative.length() > 0
+		touches[0] = mouse_motion.position
+		control.show_log("mouse motion: " + str(mouse_motion.position))
+
+		# is_mouse_moving = mouse_motion.relative.length() > 0
