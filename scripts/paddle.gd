@@ -39,7 +39,7 @@ func move_with_mouse() -> bool:
 		_: pass
 
 	position.y = mouse_pos.y
-	control.show_log("move_with_mouse: " + str(position.y))
+	# control.show_log("move_with_mouse: " + str(position.y))
 	return true
 
 
@@ -48,7 +48,7 @@ func move_with_touch() -> bool:
 
 	for index: int in touches.keys():
 		var touch_pos := touches[index] as Vector2
-		control.show_log("touch index: %s, pos: %s" % [index, str(touch_pos)])
+		# control.show_log("touch index: %s, pos: %s" % [index, str(touch_pos)])
 		# if touch_pos.y < 0 or touch_pos.y > screen_size.y: continue
 
 		match player_id:
@@ -57,7 +57,7 @@ func move_with_touch() -> bool:
 			_: pass
 
 		position.y = clamp(touch_pos.y, y_min, y_max)
-		control.show_log("move_with_touch: " + str(position.y))
+		# control.show_log("move_with_touch: " + str(position.y))
 
 	touches.clear()
 
@@ -105,18 +105,18 @@ func _input(event: InputEvent) -> void:
 
 		if touch_event.pressed:
 			touches[touch_event.index] = touch_event.position
-			control.show_log("touche event pressed: " + str(touch_event.position))
+			# control.show_log("touche event pressed: " + str(touch_event.position))
 
 	elif event is InputEventScreenDrag:
 		var touch_event := event as InputEventScreenDrag
 
 		touches[touch_event.index] = touch_event.position
-		control.show_log("touche event drag: " + str(touch_event.position))
+		# control.show_log("touche event drag: " + str(touch_event.position))
 
 	elif event is InputEventMouseMotion:
 		var mouse_motion := event as InputEventMouseMotion
 
 		touches[0] = mouse_motion.position
-		control.show_log("mouse motion: " + str(mouse_motion.position))
+		# control.show_log("mouse motion: " + str(mouse_motion.position))
 
 		# is_mouse_moving = mouse_motion.relative.length() > 0
