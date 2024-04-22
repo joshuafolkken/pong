@@ -119,3 +119,4 @@ material = SubResource("ShaderMaterial_awcsm")
 custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
 offset_right = 1200.0
 offset_bottom = 900.0
+mouse_filter = 2
