@@ -1,7 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://dju4h517kj54d"]
 
 [ext_resource type="PackedScene" uid="uid://bsp0128sfi5lg" path="res://scenes/wall.tscn" id="1_e8wku"]
-[ext_resource type="Shader" path="res://shader/new_shader.gdshader" id="1_x0psg"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="2_8w4nk"]
 [ext_resource type="PackedScene" uid="uid://csloe4yhdd1c" path="res://scenes/goal.tscn" id="2_466c4"]
 [ext_resource type="Script" path="res://scripts/center_line.gd" id="3_sr750"]
@@ -13,9 +12,11 @@
 [ext_resource type="Script" path="res://scripts/beep.gd" id="10_leidq"]
 [ext_resource type="Script" path="res://scripts/control.gd" id="12_hcal6"]
 [ext_resource type="FontFile" uid="uid://bg543oqf4lsio" path="res://assets/fonts/Miniline2-GmZ.ttf" id="12_xkr0k"]
+[ext_resource type="Shader" path="res://shader/new_shader.gdshader" id="14_pnl81"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_awcsm"]
-shader = ExtResource("1_x0psg")
+shader = ExtResource("14_pnl81")
+shader_parameter/scanline_count = 200.0
 
 [node name="Main" type="Node2D"]
 script = ExtResource("2_8w4nk")
@@ -112,11 +113,9 @@ text = "120.0"
 horizontal_alignment = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_awcsm")
 custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
 offset_right = 1200.0
 offset_bottom = 900.0
-color = Color(1, 1, 1, 0)
