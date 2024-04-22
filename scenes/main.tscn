@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dju4h517kj54d"]
+[gd_scene load_steps=15 format=3 uid="uid://dju4h517kj54d"]
 
 [ext_resource type="PackedScene" uid="uid://bsp0128sfi5lg" path="res://scenes/wall.tscn" id="1_e8wku"]
 [ext_resource type="Shader" path="res://shader/new_shader.gdshader" id="1_x0psg"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://scripts/hud.gd" id="9_oy2ur"]
 [ext_resource type="Script" path="res://scripts/beep.gd" id="10_leidq"]
 [ext_resource type="Script" path="res://scripts/control.gd" id="12_hcal6"]
+[ext_resource type="FontFile" uid="uid://bg543oqf4lsio" path="res://assets/fonts/Miniline2-GmZ.ttf" id="12_xkr0k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_awcsm"]
 shader = ExtResource("1_x0psg")
@@ -62,15 +63,6 @@ modulate = Color(1, 0, 1, 1)
 position = Vector2(700, 450)
 player_id = 1
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-material = SubResource("ShaderMaterial_awcsm")
-custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
-offset_right = 1200.0
-offset_bottom = 900.0
-
 [node name="HUD" parent="." instance=ExtResource("8_dhkg7")]
 script = ExtResource("9_oy2ur")
 
@@ -114,6 +106,16 @@ offset_bottom = 791.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_colors/font_color = Color(0.450648, 0.450648, 0.450648, 1)
+theme_override_fonts/font = ExtResource("12_xkr0k")
 theme_override_font_sizes/font_size = 32
 text = "120.0"
 horizontal_alignment = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_awcsm")
+custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
+offset_right = 1200.0
+offset_bottom = 900.0
+color = Color(1, 1, 1, 0)

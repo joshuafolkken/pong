@@ -1,14 +1,12 @@
 shader_type canvas_item;
 
 void fragment() {
-	float line_height = 2.0;
-	float intensity = 0.0;
+    float line_height = 2.0; // 2ピクセルごとにラインを作成
+    bool is_even = mod(FRAGCOORD.x, line_height * 2.0) >= line_height;
 
-	if (int(mod(FRAGCOORD.y, line_height)) == 0) {
-        // インターレースの線に当たる部分
-        COLOR = texture(TEXTURE, UV) * intensity;
+    if (is_even) {
+        //COLOR = texture(TEXTURE, UV);
     } else {
-        // 通常の表示
-        COLOR = texture(TEXTURE, UV);
+        COLOR = vec4(0.0, 0.0, 0.0, 1.0); // 黒い線
     }
 }
