@@ -1,12 +1,36 @@
+//---CRT Shader---
 shader_type canvas_item;
 
-void fragment() {
-    float line_height = 2.0; // 2ピクセルごとにラインを作成
-    bool is_even = mod(FRAGCOORD.x, line_height * 2.0) >= line_height;
+uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest;
+uniform float scanline_count : hint_range(0, 1800) = 200.0;
 
-    if (is_even) {
-        //COLOR = texture(TEXTURE, UV);
-    } else {
-        COLOR = vec4(0.0, 0.0, 0.0, 1.0); // 黒い線
-    }
+vec2 uv_curve(vec2 uv)
+{
+	uv = (uv - 0.5) * 2.0;
+
+	//You can modify the numbers and try different values
+	uv.x *= 1.0 + pow(abs(uv.y) / 10.0, 2.0);
+	uv.y *= 1.0 + pow(abs(uv.x) / 10.0, 2.0);
+
+	//The scale part (you can delete it when you want)
+	uv /= 1.0;
+
+	uv = (uv/2.0) + 0.5;
+	return uv;
+}
+
+
+void fragment()
+{
+	//You can modify the *3.0, *-3.0 for a bigger or smaller
+	float r = texture(screen_texture, uv_curve(SCREEN_UV) + vec2(SCREEN_PIXEL_SIZE.x*0.0), 0.0).r;
+	float g = texture(screen_texture, uv_curve(SCREEN_UV) + vec2(SCREEN_PIXEL_SIZE.x*3.0), 0.0).g;
+	float b = texture(screen_texture, uv_curve(SCREEN_UV) + vec2(SCREEN_PIXEL_SIZE.x*-3.0), 0.0).b;
+
+	//If you dont want scanlines you can just delete this part
+	float s = sin(uv_curve(SCREEN_UV).x * scanline_count * PI * 2.0);
+	s = (s * 0.6 + 0.5) * 0.9 + 0.1;
+	vec4 scan_line = vec4(vec3(pow(s, 0.25)), 1.0);
+
+	COLOR = vec4(r, g, b, 1.0) * scan_line;
 }
