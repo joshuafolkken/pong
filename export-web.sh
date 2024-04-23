@@ -2,7 +2,7 @@
 # chmod +x ./export-web.sh
 
 echo "Exporting Godot project to Web..."
-godot --no-window --export-release "Web" web/index.html
+godot --headless --export-release "Web" web/index.html
 echo "Done."
 
 echo "Optimizing WebAssembly..."
