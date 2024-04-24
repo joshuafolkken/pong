@@ -19,6 +19,8 @@ enum GameMode {
 @onready var right_paddle_2: Paddle = $RightPaddle2
 @onready var full_screen_button: TextureButton = $FullScreenButton
 @onready var settings: Settings = $Settings
+@onready var retro_canvas_layer: CanvasLayer = $RetroCanvasLayer
+@onready var retro_button: TextureButton = $Control/RetroButton
 
 
 func set_paddles() -> void:
@@ -28,11 +30,24 @@ func set_paddles() -> void:
 	right_paddle_2.set_visibility(is_dubble_paddle)
 
 
+func _retro_mode() -> void:
+	retro_canvas_layer.visible = settings.load_retro_mode()
+
+
+func _on_retro_button_pressed(toggle_on: bool) -> void:
+	settings.save_retro_mode(toggle_on)
+	_retro_mode()
+
+
 func _ready() -> void:
-	full_screen_button.pressed.connect(_on_full_screen_button_pressed)
+	retro_button.button_pressed = settings.load_retro_mode()
 
 	ball.hide()
 	set_paddles()
+	_retro_mode()
+
+	full_screen_button.pressed.connect(_on_full_screen_button_pressed)
+	retro_button.toggled.connect(_on_retro_button_pressed)
 
 
 func _on_full_screen_button_pressed() -> void:
