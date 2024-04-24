@@ -12,20 +12,20 @@ enum GameMode {
 }
 
 @onready var game_state := GameState.WAITING
-@onready var game_mode := GameMode.double
 
 @onready var ball: Ball = $Ball
 @onready var hud: Hud = $HUD
 @onready var left_paddle_2: Paddle = $LeftPaddle2
 @onready var right_paddle_2: Paddle = $RightPaddle2
 @onready var full_screen_button: TextureButton = $FullScreenButton
+@onready var settings: Settings = $Settings
 
 
 func set_paddles() -> void:
-	var is_visible := game_mode == GameMode.double
+	var is_dubble_paddle := settings.load_double_paddle()
 
-	left_paddle_2.set_visibility(is_visible)
-	right_paddle_2.set_visibility(is_visible)
+	left_paddle_2.set_visibility(is_dubble_paddle)
+	right_paddle_2.set_visibility(is_dubble_paddle)
 
 
 func _ready() -> void:
@@ -61,6 +61,7 @@ func _input(event: InputEvent) -> void:
 				start()
 
 	if event.is_action_pressed("game_mode"):
-		game_mode = GameMode.single if game_mode == GameMode.double else GameMode.double
+		var is_double_paddle := settings.load_double_paddle()
+		settings.save_double_paddle(not is_double_paddle)
 
 		set_paddles()
