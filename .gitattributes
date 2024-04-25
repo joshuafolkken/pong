@@ -2,3 +2,4 @@
 * text=auto eol=lf
 
 web/* linguist-generated=true
+template.html linguist-generated=true
