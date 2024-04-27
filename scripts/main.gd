@@ -20,7 +20,9 @@ enum GameMode {
 @onready var full_screen_button: TextureButton = $FullScreenButton
 @onready var settings: Settings = $Settings
 @onready var retro_canvas_layer: CanvasLayer = $RetroCanvasLayer
-@onready var retro_button: TextureButton = $Control/RetroButton
+@onready var retro_button: TextureButton = $Buttons/RetroButton
+@onready var music_button: TextureButton = $Buttons/MusicButton
+@onready var music: AudioStreamPlayer2D = $Music
 
 
 func set_paddles() -> void:
@@ -34,20 +36,38 @@ func _retro_mode() -> void:
 	retro_canvas_layer.visible = settings.load_retro_mode()
 
 
+func _music() -> void:
+	var is_music_enabled := settings.load_music()
+
+	if is_music_enabled:
+		music.play()
+	else:
+		music.stop()
+
+
 func _on_retro_button_pressed(toggle_on: bool) -> void:
 	settings.save_retro_mode(toggle_on)
 	_retro_mode()
 
 
+func _on_music_button_pressed(toggle_on: bool) -> void:
+	settings.save_music(toggle_on)
+	_music()
+
+
+
 func _ready() -> void:
 	retro_button.button_pressed = settings.load_retro_mode()
+	music_button.button_pressed = settings.load_music()
 
 	ball.hide()
 	set_paddles()
 	_retro_mode()
+	_music()
 
 	full_screen_button.pressed.connect(_on_full_screen_button_pressed)
 	retro_button.toggled.connect(_on_retro_button_pressed)
+	music_button.toggled.connect(_on_music_button_pressed)
 
 
 func _on_full_screen_button_pressed() -> void:

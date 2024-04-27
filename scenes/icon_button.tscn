@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://nxhtck44owg8"]
+
+[ext_resource type="Texture2D" uid="uid://b8xl60a7ysw0o" path="res://assets/art/tv-television-svgrepo-com.svg" id="1_0myf0"]
+[ext_resource type="Script" path="res://scripts/texture_button.gd" id="2_t25ig"]
+
+[node name="RetroButton" type="TextureButton"]
+auto_translate_mode = 1
+offset_top = 840.0
+offset_right = 64.0
+offset_bottom = 896.0
+focus_mode = 0
+toggle_mode = true
+texture_normal = ExtResource("1_0myf0")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("2_t25ig")
