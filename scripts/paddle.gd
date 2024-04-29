@@ -87,7 +87,7 @@ func move_with_keyboard(delta: float) -> void:
 
 
 func _process(delta: float) -> void:
-	if move_with_touch(): return
+	move_with_touch()
 	# if move_with_mouse(): return
 	move_with_keyboard(delta)
 
