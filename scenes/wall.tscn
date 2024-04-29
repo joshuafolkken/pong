@@ -9,7 +9,7 @@ distance = 2.13163e-14
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 1200.0
 offset_bottom = 64.0
-color = Color(0.864675, 0.864675, 0.864675, 1)
+color = Color(0.414067, 0.414065, 0.414066, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 64)

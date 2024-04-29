@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="KAWAII PONG"
-config/version="0.38.0"
+config/version="0.39.0"
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://assets/art/arcade-game-pong-gaming-svgrepo-com.svg"
@@ -32,7 +32,6 @@ gdscript/warnings/unsafe_call_argument=1
 
 window/size/viewport_width=1200
 window/size/viewport_height=900
-window/size/mode=3
 window/stretch/mode="canvas_items"
 window/dpi/allow_hidpi=false
 window/handheld/orientation=1
@@ -73,5 +72,6 @@ game_mode={
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)
