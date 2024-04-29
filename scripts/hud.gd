@@ -1,7 +1,7 @@
 class_name Hud
 extends CanvasLayer
 
-const MAX_SCORE = 5
+const MAX_SCORE := 5
 
 var score_left := MAX_SCORE
 var score_right := MAX_SCORE

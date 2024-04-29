@@ -1,7 +1,7 @@
 extends Control
 class_name MainControl
 
-const MAX_LINES = 8
+const MAX_LINES := 8
 
 @onready var label: Label = $Label
 @onready var fps_label: Label = $FpsLabel
