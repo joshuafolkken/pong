@@ -1,9 +1,9 @@
 class_name Ball
 extends CharacterBody2D
 
-const INIT_SPEED = 300
-const ACCELERATION = 10
-const PADDLE_HIT_ANGLE_RANGE = PI / 4
+const INIT_SPEED := 300
+const ACCELERATION := 10
+const PADDLE_HIT_ANGLE_RANGE := PI / 4
 
 var speed := INIT_SPEED
 var direction := Vector2.ONE
@@ -43,23 +43,25 @@ func update_ball_color() -> void:
 		modulate = Color(0, 1, 1, 1).lerp(Color(1, 0, 1, 1), ratio)
 
 
-func handle_paddle_collision(collision: KinematicCollision2D, collider: Node2D) -> void:
+func handle_paddle_collision(_collision: KinematicCollision2D, collider: Node2D) -> void:
 	beep.hit()
 	speed += ACCELERATION
 
 	var paddle_position_y := collider.position.y
 	var hit_pos := position.y - paddle_position_y
-	var max_distance: int = collider.get_node("CollisionShape2D").shape.extents.y
+	var collision_shape := collider.get_node("CollisionShape2D") as CollisionShape2D
+	var rectangle_shape := collision_shape.shape as RectangleShape2D
+	var max_distance: int = rectangle_shape.extents.y
 	var normalizerd_distance := hit_pos / max_distance
 	var angle := normalizerd_distance * PADDLE_HIT_ANGLE_RANGE
-	var direction := Vector2.RIGHT.rotated(angle)
+	var _direction := Vector2.RIGHT.rotated(angle)
 
 	if velocity.x < 0:
-		direction.x = abs(direction.x)
+		_direction.x = abs(_direction.x)
 	else:
-		direction.x = -abs(direction.x)
+		_direction.x = -abs(_direction.x)
 
-	velocity = velocity.length() * direction
+	velocity = velocity.length() * _direction
 
 
 func handle_wall_collision(collision: KinematicCollision2D) -> void:

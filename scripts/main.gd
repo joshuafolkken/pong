@@ -66,7 +66,7 @@ func _full_screen() -> void:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
 
-func _on_full_screen_button_pressed(toggle_on: bool) -> void:
+func _on_full_screen_button_pressed(_toggle_on: bool) -> void:
 	# settings.save_full_screen(toggle_on)
 	_full_screen()
 

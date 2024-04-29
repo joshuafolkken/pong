@@ -7,15 +7,15 @@ const GAME_SECTION = "game"
 const VIDEO_SECTION = "video"
 const AUDIO_SECTION = "audio"
 
-const DOUBLE_PADDLE = [GAME_SECTION, "double_paddle"]
+const DOUBLE_PADDLE: Array[String] = [GAME_SECTION, "double_paddle"]
 
-const RETRO_MODE = [VIDEO_SECTION, "retro_mode"]
-const FULL_SCREEN = [VIDEO_SECTION, "full_screen"]
-const SCREEN_SNAKE = [VIDEO_SECTION, "screen_snake"]
+const RETRO_MODE: Array[String] = [VIDEO_SECTION, "retro_mode"]
+const FULL_SCREEN: Array[String] = [VIDEO_SECTION, "full_screen"]
+const SCREEN_SNAKE: Array[String] = [VIDEO_SECTION, "screen_snake"]
 
-const MUISC = [AUDIO_SECTION, "music"]
-const MASTER_VOLUME = [AUDIO_SECTION, "master_volume"]
-const SFX_VOLUME = [AUDIO_SECTION, "sfx_volume"]
+const MUISC: Array[String] = [AUDIO_SECTION, "music"]
+const MASTER_VOLUME: Array[String] = [AUDIO_SECTION, "master_volume"]
+const SFX_VOLUME: Array[String] = [AUDIO_SECTION, "sfx_volume"]
 
 @export var double_paddle := true
 

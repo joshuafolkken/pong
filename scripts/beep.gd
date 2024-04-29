@@ -1,7 +1,7 @@
 class_name Beep
 extends AudioStreamPlayer2D
 
-var END_TIME := 0.01
+const END_TIME := 0.01
 
 
 func _process(_delta: float) -> void:
