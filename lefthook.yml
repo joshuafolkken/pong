@@ -1,0 +1,29 @@
+pre-commit:
+  parallel: true
+
+  commands:
+    prevent-main-push:
+      run: |
+        branch=$(git rev-parse --abbrev-ref HEAD)
+        if [ "$branch" = "main" ]; then
+          echo "Direct commits to the main branch are not allowed. Please use a different branch."
+          exit 1
+        fi
+
+    gdscript-format:
+      glob: "*.gd"
+      run: gdformat {files}
+
+pre-push:
+  parallel: true
+
+  commands:
+    check-merge-conflict:
+      run: |
+        check-merge-conflict:git fetch origin
+        git merge --no-commit --no-ff origin/main
+        git merge --abort
+
+    gdscript-lint:
+      glob: "*.gd"
+      run: gdlint {files}
