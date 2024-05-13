@@ -20,15 +20,23 @@ pre-push:
   commands:
     check-merge-conflict:
       run: |
+        current_branch=$(git rev-parse --abbrev-ref HEAD)
         git fetch origin main
-        git merge --no-commit --no-ff origin/main
-        if [ $? -ne 0 ]; then
-            echo "Merge conflict detected. Please resolve before pushing."
-            git merge --abort
-            exit 1
+        git merge-base --is-ancestor main $current_branch
+
+        if [ $? -eq 0 ]; then
+            git merge --no-commit --no-ff origin/main
+            if [ $? -ne 0 ]; then
+                echo "Merge conflict detected. Please resolve before pushing."
+                git reset --soft HEAD
+                exit 1
+            else
+                echo "No merge conflict detected."
+                git reset --soft HEAD
+            fi
         else
-            echo "No merge conflict detected."
-            git merge --abort
+            echo "Your branch has diverged from 'main'. Please rebase or merge 'main' into your branch first."
+            exit 1
         fi
 
     gdscript-lint:
