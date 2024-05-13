@@ -3,6 +3,7 @@ extends TextureButton
 @export var on_color := Color(1, 1, 1, 1)
 @export var off_color := Color(1, 1, 1, 0.35)
 
+
 func _ready() -> void:
 	toggle_mode = true
 
