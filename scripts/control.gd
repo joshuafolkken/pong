@@ -1,5 +1,5 @@
-extends Control
 class_name MainControl
+extends Control
 
 const MAX_LINES := 8
 
@@ -7,6 +7,7 @@ const MAX_LINES := 8
 @onready var fps_label: Label = $FpsLabel
 @onready var game_name: String = ProjectSettings.get_setting("application/config/name")
 @onready var game_version: String = ProjectSettings.get_setting("application/config/version")
+
 
 func _update_log(message: String) -> void:
 	var lines := label.text.split("\n")
@@ -20,6 +21,7 @@ func _update_log(message: String) -> void:
 func show_log(message: String) -> void:
 	_update_log(message)
 	print(message)
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

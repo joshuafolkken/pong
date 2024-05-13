@@ -54,14 +54,14 @@ func handle_paddle_collision(_collision: KinematicCollision2D, collider: Node2D)
 	var max_distance: int = rectangle_shape.extents.y
 	var normalizerd_distance := hit_pos / max_distance
 	var angle := normalizerd_distance * PADDLE_HIT_ANGLE_RANGE
-	var _direction := Vector2.RIGHT.rotated(angle)
+	var rotated_direction := Vector2.RIGHT.rotated(angle)
 
 	if velocity.x < 0:
-		_direction.x = abs(_direction.x)
+		rotated_direction.x = abs(rotated_direction.x)
 	else:
-		_direction.x = -abs(_direction.x)
+		rotated_direction.x = -abs(rotated_direction.x)
 
-	velocity = velocity.length() * _direction
+	velocity = velocity.length() * rotated_direction
 
 
 func handle_wall_collision(collision: KinematicCollision2D) -> void:
@@ -77,6 +77,7 @@ func handle_goal_collision(collider: Node2D) -> void:
 	else:
 		hud.score_left += 1
 	goal()
+
 
 func handle_collision(collision: KinematicCollision2D) -> void:
 	var collider: Node2D = collision.get_collider()
@@ -95,7 +96,8 @@ func handle_collision(collision: KinematicCollision2D) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if not is_visible(): return
+	if not is_visible():
+		return
 
 	velocity = velocity.normalized() * speed * delta
 

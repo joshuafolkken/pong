@@ -7,8 +7,8 @@ enum GameState {
 }
 
 enum GameMode {
-	single,
-	double,
+	SINGLE,
+	DOUBLE,
 }
 
 @onready var game_state := GameState.WAITING
